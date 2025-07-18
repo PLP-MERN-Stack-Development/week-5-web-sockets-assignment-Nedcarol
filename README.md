@@ -1,20 +1,3 @@
-[![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-2e0aaae1b6195c2367325f4f02e2d04e9abb55f0b24a779b69b11b9e10269abc.svg)](https://classroom.github.com/online_ide?assignment_repo_id=19951011&assignment_repo_type=AssignmentRepo)
-# Real-Time Chat Application with Socket.io
-
-This assignment focuses on building a real-time chat application using Socket.io, implementing bidirectional communication between clients and server.
-
-## Assignment Overview
-
-You will build a chat application with the following features:
-1. Real-time messaging using Socket.io
-2. User authentication and presence
-3. Multiple chat rooms or private messaging
-4. Real-time notifications
-5. Advanced features like typing indicators and read receipts
-
-## Project Structure
-
-```
 socketio-chat/
 ├── client/                 # React front-end
 │   ├── public/             # Static files
@@ -35,44 +18,96 @@ socketio-chat/
 │   ├── server.js           # Main server file
 │   └── package.json        # Server dependencies
 └── README.md               # Project documentation
+# Real-Time Chat App (Socket.io, React, Node.js)
+
+[![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-2e0aaae1b6195c2367325f4f02e2d04e9abb55f0b24a779b69b11b9e10269abc.svg)](https://classroom.github.com/online_ide?assignment_repo_id=19951011&assignment_repo_type=AssignmentRepo)
+
+## Overview
+A real-time chat application built with Node.js, Express, Socket.io, and React. Supports public and private messaging, typing indicators, and online user status.
+
+## Features
+- Real-time public chat
+- Private messaging between users
+- Typing indicators
+- Online users list
+- (Optional) File sharing (to be implemented)
+- (Optional) Emoji reactions (to be implemented)
+- (Optional) Message history (to be implemented)
+
+## Folder Structure
+```
+week-5-web-sockets-assignment-Nedcarol/
+  client/   # React frontend
+  server/   # Node.js/Express backend
 ```
 
 ## Getting Started
 
-1. Accept the GitHub Classroom assignment invitation
-2. Clone your personal repository that was created by GitHub Classroom
-3. Follow the setup instructions in the `Week5-Assignment.md` file
-4. Complete the tasks outlined in the assignment
+### Prerequisites
+- Node.js (v16+ recommended)
+- npm
 
-## Files Included
+### 1. Clone the repository
+```sh
+git clone https://github.com/PLP-MERN-Stack-Development/week-5-web-sockets-assignment-Nedcarol.git
+cd week-5-web-sockets-assignment-Nedcarol
+```
 
-- `Week5-Assignment.md`: Detailed assignment instructions
-- Starter code for both client and server:
-  - Basic project structure
-  - Socket.io configuration templates
-  - Sample components for the chat interface
+### 2. Install dependencies
+#### Server
+```sh
+cd server
+npm install
+```
+#### Client
+```sh
+cd ../client
+npm install
+```
 
-## Requirements
+### 3. Run the app locally
+#### Start the backend
+```sh
+cd server
+npm run dev
+```
+#### Start the frontend
+```sh
+cd ../client
+npm run dev
+```
 
-- Node.js (v18 or higher)
-- npm or yarn
-- Modern web browser
-- Basic understanding of React and Express
+- The backend runs on [http://localhost:5002](http://localhost:5002)
+- The frontend runs on [http://localhost:5173](http://localhost:5173)
 
-## Submission
+## Deployment
 
-Your work will be automatically submitted when you push to your GitHub Classroom repository. Make sure to:
+### Deploying the Server (Node.js/Express)
+- **Render**: [https://render.com/](https://render.com/)
+  - Create a new Web Service, connect your repo, set build/start commands (`npm install`, `npm run dev` or `npm start`), and set environment variables if needed.
+- **Railway**: [https://railway.app/](https://railway.app/)
+  - Similar process: new project, connect repo, deploy.
 
-1. Complete both the client and server portions of the application
-2. Implement the core chat functionality
-3. Add at least 3 advanced features
-4. Document your setup process and features in the README.md
-5. Include screenshots or GIFs of your working application
-6. Optional: Deploy your application and add the URLs to your README.md
+### Deploying the Client (React/Vite)
+- **Vercel**: [https://vercel.com/](https://vercel.com/)
+- **Netlify**: [https://netlify.com/](https://netlify.com/)
+  - Connect your repo, set build command (`npm run build`), and publish directory (`dist`).
 
-## Resources
+**Note:**
+- Update the Socket.io client URL in `client/src/socket/socket.js` to point to your deployed backend.
+- Make sure CORS is configured on the backend to allow your frontend domain.
 
-- [Socket.io Documentation](https://socket.io/docs/v4/)
-- [React Documentation](https://react.dev/)
-- [Express.js Documentation](https://expressjs.com/)
-- [Building a Chat Application with Socket.io](https://socket.io/get-started/chat) 
+## Screenshots
+_Add screenshots or GIFs here_
+
+## Optional Features (To Be Added)
+- File sharing (send images/files in chat)
+- Emoji reactions to messages
+- Message history (persist chat in database)
+
+## License
+MIT
+
+---
+
+**Author:** Nedcarol

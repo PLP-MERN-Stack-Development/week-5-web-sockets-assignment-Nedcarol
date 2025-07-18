@@ -4,7 +4,7 @@ import { io } from 'socket.io-client';
 import { useEffect, useState } from 'react';
 
 // Socket.io connection URL
-const SOCKET_URL = import.meta.env.VITE_SOCKET_URL || 'http://localhost:5000';
+const SOCKET_URL = import.meta.env.VITE_SOCKET_URL || 'http://localhost:5002';
 
 // Create socket instance
 export const socket = io(SOCKET_URL, {
@@ -23,8 +23,18 @@ export const useSocket = () => {
   const [typingUsers, setTypingUsers] = useState([]);
 
   // Connect to socket server
-  const connect = (username) => {
+  const connect = async (username) => {
     socket.connect();
+    // Load message history from backend
+    try {
+      const res = await fetch('/api/messages');
+      if (res.ok) {
+        const history = await res.json();
+        setMessages(history);
+      }
+    } catch (err) {
+      // ignore
+    }
     if (username) {
       socket.emit('user_join', username);
     }

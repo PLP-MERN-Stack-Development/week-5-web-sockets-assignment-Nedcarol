@@ -5,7 +5,9 @@ const http = require('http');
 const { Server } = require('socket.io');
 const cors = require('cors');
 const dotenv = require('dotenv');
+
 const path = require('path');
+const multer = require('multer');
 
 // Load environment variables
 dotenv.config();
@@ -15,16 +17,39 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: process.env.CLIENT_URL || 'http://localhost:5173',
+    origin: process.env.CLIENT_URL || 'http://localhost:5175',
     methods: ['GET', 'POST'],
     credentials: true,
   },
 });
 
+
 // Middleware
 app.use(cors());
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
+// Multer setup for file uploads
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, path.join(__dirname, 'uploads'));
+  },
+  filename: function (req, file, cb) {
+    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+    cb(null, uniqueSuffix + '-' + file.originalname);
+  }
+});
+const upload = multer({ storage });
+// File upload endpoint
+app.post('/api/upload', upload.single('file'), (req, res) => {
+  if (!req.file) {
+    return res.status(400).json({ error: 'No file uploaded' });
+  }
+  // Return the file URL
+  const fileUrl = `/uploads/${req.file.filename}`;
+  res.json({ fileUrl, originalName: req.file.originalname });
+});
 
 // Store connected users and messages
 const users = {};
@@ -124,7 +149,7 @@ app.get('/', (req, res) => {
 });
 
 // Start server
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5002;
 server.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });

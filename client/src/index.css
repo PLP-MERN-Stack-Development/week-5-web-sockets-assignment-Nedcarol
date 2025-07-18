@@ -1,0 +1,10 @@
+/* Basic global styles for your chat app */
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+  background: #f3f4f6;
+}
+
+* {
+  box-sizing: border-box;
+}
