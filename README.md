@@ -42,6 +42,12 @@ week-5-web-sockets-assignment-Nedcarol/
 ```
 
 ## Getting Started
+## 🚀 Live Demo
+
+[View the live app on Render](https://week-5-web-sockets-assignment-nedcarol.onrender.com)
+
+---
+
 
 ### Prerequisites
 - Node.js (v16+ recommended)
